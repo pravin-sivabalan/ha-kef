@@ -1,6 +1,6 @@
 """Constants for KEF Speakers integration."""
 
-DOMAIN = "kef"
+DOMAIN = "ha-kef"
 
 # Configuration keys
 CONF_HOST = "host"
@@ -13,18 +13,14 @@ DEFAULT_PORT = 50001
 UPDATE_INTERVAL = 30  # seconds
 
 # Supported KEF speaker models
-SUPPORTED_MODELS = [
-    "LS50 Wireless II",
-    "LSX II", 
-    "LS60"
-]
+SUPPORTED_MODELS = ["LS50 Wireless II", "LSX II", "LS60"]
 
 # KEF speaker sources mapping
 KEF_SOURCES = {
     "wifi": "WiFi",
-    "bluetooth": "Bluetooth", 
+    "bluetooth": "Bluetooth",
     "aux": "Aux",
     "optical": "Optical",
     "coaxial": "Coaxial",
-    "usb": "USB"
+    "usb": "USB",
 }

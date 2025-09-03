@@ -23,10 +23,11 @@ STEP_USER_DATA_SCHEMA = vol.Schema(
 )
 
 
-class KefConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
+class KefConfigFlow(config_entries.ConfigFlow):
     """Handle a config flow for KEF Speakers."""
 
     VERSION = 1
+    HANDLER = DOMAIN
 
     async def async_step_user(
         self, user_input: dict[str, Any] | None = None
