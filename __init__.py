@@ -69,14 +69,12 @@ class KefDataUpdateCoordinator(DataUpdateCoordinator):
         try:
             # Get all speaker data
             data = {
-                "power": await self.kef_connector.power,
+                "status": await self.kef_connector.status,
                 "volume": await self.kef_connector.volume,
                 "source": await self.kef_connector.source,
-                "mute": await self.kef_connector.mute,
-                "device_name": await self.kef_connector.device_name,
-                "status": await self.kef_connector.status,
+                "speaker_name": await self.kef_connector.speaker_name,
                 "song_status": await self.kef_connector.song_status,
-                "song_info": await self.kef_connector.song_info,
+                "song_info": await self.kef_connector.get_song_information(),
             }
 
             _LOGGER.debug("KEF speaker data: %s", data)

@@ -48,16 +48,16 @@ class KefMediaPlayer(CoordinatorEntity, MediaPlayerEntity):
     def name(self) -> str:
         """Return the name of the media player."""
         if self.coordinator.data and "device_name" in self.coordinator.data:
-            return self.coordinator.data["device_name"]
+            return self.coordinator.data["speaker_name"]
         return DEFAULT_NAME
 
     @property
     def state(self) -> MediaPlayerState:
         """Return the state of the media player."""
-        if not self.coordinator.data or not self.coordinator.data.get("power"):
+        if not self.coordinator.data or not self.coordinator.data.get("status"):
             return MediaPlayerState.OFF
 
-        song_status = self.coordinator.data.get("song_status", "")
+        song_status = self.coordinator.data.get("status", "")
         if song_status == "playing":
             return MediaPlayerState.PLAYING
         elif song_status == "paused":
@@ -76,7 +76,7 @@ class KefMediaPlayer(CoordinatorEntity, MediaPlayerEntity):
     def is_volume_muted(self) -> bool | None:
         """Boolean if volume is currently muted."""
         if self.coordinator.data:
-            return self.coordinator.data.get("mute", False)
+            return self.coordinator.data.get("volume", 0) == 0
         return None
 
     @property
