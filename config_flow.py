@@ -45,12 +45,12 @@ class KefConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         try:
             # Test connection to KEF speaker
             kef_connector = KefAsyncConnector(host)
-            device_name = await kef_connector.device_name
+            speaker_model = await kef_connector.get_speaker_model()
 
-            if not device_name:
-                raise Exception("Could not get device name")
+            if not speaker_model:
+                raise Exception("Could not get speaker model")
 
-            _LOGGER.info("Successfully connected to KEF speaker: %s", device_name)
+            _LOGGER.info("Successfully connected to KEF speaker: %s", speaker_model)
 
         except Exception as err:
             _LOGGER.error("Error connecting to KEF speaker at %s: %s", host, err)
@@ -62,7 +62,7 @@ class KefConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
 
             # Create the config entry
             return self.async_create_entry(
-                title=device_name or DEFAULT_NAME,
+                title=speaker_model or DEFAULT_NAME,
                 data=user_input,
             )
 

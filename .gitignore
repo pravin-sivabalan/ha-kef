@@ -1,1 +1,4 @@
 .jj/
+.venv
+.ruff_cache
+

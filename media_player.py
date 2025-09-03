@@ -1,8 +1,8 @@
 """Media player platform for KEF Speakers."""
+
 from __future__ import annotations
 
 import logging
-from typing import Any
 
 from pykefcontrol import KefAsyncConnector
 
@@ -29,7 +29,7 @@ async def async_setup_entry(
 ) -> None:
     """Set up KEF media player from config entry."""
     coordinator = hass.data[DOMAIN][config_entry.entry_id]
-    
+
     async_add_entities([KefMediaPlayer(coordinator, config_entry)])
 
 
@@ -56,7 +56,7 @@ class KefMediaPlayer(CoordinatorEntity, MediaPlayerEntity):
         """Return the state of the media player."""
         if not self.coordinator.data or not self.coordinator.data.get("power"):
             return MediaPlayerState.OFF
-            
+
         song_status = self.coordinator.data.get("song_status", "")
         if song_status == "playing":
             return MediaPlayerState.PLAYING
@@ -157,7 +157,7 @@ class KefMediaPlayer(CoordinatorEntity, MediaPlayerEntity):
             if value == source:
                 kef_source = key
                 break
-        
+
         if kef_source:
             self._kef_connector.source = kef_source
             await self.coordinator.async_request_refresh()
