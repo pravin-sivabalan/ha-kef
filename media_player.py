@@ -132,13 +132,13 @@ class KefMediaPlayer(CoordinatorEntity, MediaPlayerEntity):
 
     async def async_turn_off(self) -> None:
         """Turn the media player off."""
-        await self._kef_connector.power_off()
+        await self._kef_connector.shutdown()
         await self.coordinator.async_request_refresh()
 
     async def async_set_volume_level(self, volume: float) -> None:
         """Set volume level, range 0..1."""
         kef_volume = int(volume * 100)
-        self._kef_connector.volume = kef_volume
+        await self._kef_connector.set_volume(kef_volume)
         await self.coordinator.async_request_refresh()
 
     async def async_mute_volume(self, mute: bool) -> None:
@@ -159,7 +159,7 @@ class KefMediaPlayer(CoordinatorEntity, MediaPlayerEntity):
                 break
 
         if kef_source:
-            self._kef_connector.source = kef_source
+            await self._kef_connector.set_source(kef_source)
             await self.coordinator.async_request_refresh()
 
     async def async_media_play(self) -> None:
