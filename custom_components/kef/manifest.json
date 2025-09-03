@@ -1,0 +1,12 @@
+{
+  "domain": "kef",
+  "name": "KEF Speakers",
+  "codeowners": [],
+  "config_flow": true,
+  "dependencies": [],
+  "documentation": "https://github.com/N0ciple/pykefcontrol",
+  "integration_type": "device",
+  "iot_class": "local_polling",
+  "requirements": ["pykefcontrol==0.7.1"],
+  "version": "1.0.0"
+}
