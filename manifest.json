@@ -1,5 +1,5 @@
 {
-  "domain": "ha-kef",
+  "domain": "ha_kef",
   "name": "KEF Speakers",
   "codeowners": [],
   "config_flow": true,

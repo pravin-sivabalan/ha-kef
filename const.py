@@ -1,6 +1,6 @@
 """Constants for KEF Speakers integration."""
 
-DOMAIN = "ha-kef"
+DOMAIN = "ha_kef"
 
 # Configuration keys
 CONF_HOST = "host"
